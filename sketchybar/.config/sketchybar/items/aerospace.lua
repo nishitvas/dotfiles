@@ -3,7 +3,6 @@ local colors = require("colors")
 local settings = require("settings")
 local app_icons = require("helpers.app_icons")
 
-local max_workspaces = 16
 local query_workspaces = "aerospace list-workspaces --all --format '%{workspace}%{monitor-id}' --json"
 
 -- Add padding to the left
