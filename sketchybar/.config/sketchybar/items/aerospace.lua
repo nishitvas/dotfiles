@@ -126,11 +126,13 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
         -- initial setup
         updateWindows(space_index)
         sbar.exec("aerospace list-workspaces --focused", function(focused_workspace)
-            workspaces[focused_workspace]:set({
-                icon = { highlight = true },
-                label = { highlight = true },
-                background = { border_width = 2 },
-            })
+            if workspaces[focused_workspace] ~= nil then
+                workspaces[focused_workspace]:set({
+                    icon = { highlight = true },
+                    label = { highlight = true },
+                    background = { border_width = 2 },
+                })
+            end
         end)
     end
 end)
