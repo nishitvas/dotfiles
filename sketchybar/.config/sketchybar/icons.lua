@@ -82,6 +82,14 @@ local icons = {
       forward = "",
       play_pause = "",
     },
+    timer = {
+      hour_glass = {
+        on = "",
+        off = "",
+        half = "",
+      },
+      stop_watch = "",
+    }
   },
 }
 
