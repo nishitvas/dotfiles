@@ -29,7 +29,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 20
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -44,9 +44,12 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focused-monitor-changed = [
+    # 'move-mouse monitor-lazy-center',
+    'exec-and-forget sketchybar --trigger aerospace_focus_change',
+]
 on-focus-changed = [
-    'move-mouse window-lazy-center',
+    # 'move-mouse window-lazy-center',
     'exec-and-forget sketchybar --trigger aerospace_focus_change',
 ]
 
@@ -71,9 +74,48 @@ preset = 'qwerty'
 inner.horizontal = 5
 inner.vertical =   5
 outer.left =       8
-outer.bottom =     8
-outer.top =        8
+outer.bottom = [
+    { monitor.main = 8 },
+    8,
+]
+outer.top = [
+    { monitor.main = 12 },
+    42,
+]
 outer.right =      8
+
+# Force assign all mnemonic based spaces to extended monitor
+[workspace-to-monitor-force-assignment]
+1 = 'main'
+2 = 'main'
+3 = 'main'
+4 = 'main'
+5 = 'main'
+6 = 'main'
+7 = 'main'
+8 = 'main'
+9 = 'main'
+A = ['^LEN.*$', 'main']
+B = ['^LEN.*$', 'main']
+C = ['^LEN.*$', 'main']
+D = ['^LEN.*$', 'main']
+E = ['^LEN.*$', 'main']
+G = ['^LEN.*$', 'main']
+I = ['^LEN.*$', 'main']
+# M = ['^LEN.*$', 'main'] # Mail
+N = ['^LEN.*$', 'main']
+O = ['^LEN.*$', 'main']
+P = ['^LEN.*$', 'main']
+Q = ['^LEN.*$', 'main']
+# R = ['^LEN.*$', 'main'] # Finder
+# S = ['^LEN.*$', 'main'] # Slack
+T = ['^LEN.*$', 'main']
+U = ['^LEN.*$', 'main']
+V = ['^LEN.*$', 'main']
+W = ['^LEN.*$', 'main']
+X = ['^LEN.*$', 'main']
+Y = ['^LEN.*$', 'main']
+Z = ['^LEN.*$', 'main']
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -135,61 +177,61 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
-# alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-# alt-b = 'workspace B'
-# alt-c = 'workspace C'
-# alt-d = 'workspace D'
-# alt-e = 'workspace E'
+alt-a = 'workspace A'
+alt-b = 'workspace B'
+alt-c = 'workspace C'
+alt-d = 'workspace D'
+alt-e = 'workspace E'
 # alt-f = 'workspace F'
-# alt-g = 'workspace G'
-# alt-i = 'workspace I'
-# alt-m = 'workspace M'
-# alt-n = 'workspace N'
-# alt-o = 'workspace O'
-# alt-p = 'workspace P'
-# alt-q = 'workspace Q'
-# alt-r = 'workspace R'
-# alt-s = 'workspace S'
-# alt-t = 'workspace T'
-# alt-u = 'workspace U'
-# alt-v = 'workspace V'
-# alt-w = 'workspace W'
-# alt-x = 'workspace X'
-# alt-y = 'workspace Y'
-# alt-z = 'workspace Z'
+alt-g = 'workspace G'
+alt-i = 'workspace I'
+alt-m = 'workspace M'
+alt-n = 'workspace N'
+alt-o = 'workspace O'
+alt-p = 'workspace P'
+alt-q = 'workspace Q'
+alt-r = 'workspace R'
+alt-s = 'workspace S'
+alt-t = 'workspace T'
+alt-u = 'workspace U'
+alt-v = 'workspace V'
+alt-w = 'workspace W'
+alt-x = 'workspace X'
+alt-y = 'workspace Y'
+alt-z = 'workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-7 = 'move-node-to-workspace 7'
-alt-shift-8 = 'move-node-to-workspace 8'
-alt-shift-9 = 'move-node-to-workspace 9'
-# alt-shift-a = 'move-node-to-workspace A'
-# alt-shift-b = 'move-node-to-workspace B'
-# alt-shift-c = 'move-node-to-workspace C'
-# alt-shift-d = 'move-node-to-workspace D'
-# alt-shift-e = 'move-node-to-workspace E'
-# alt-shift-f = 'move-node-to-workspace F'
-# alt-shift-g = 'move-node-to-workspace G'
-# alt-shift-i = 'move-node-to-workspace I'
-# alt-shift-m = 'move-node-to-workspace M'
-# alt-shift-n = 'move-node-to-workspace N'
-# alt-shift-o = 'move-node-to-workspace O'
-# alt-shift-p = 'move-node-to-workspace P'
-# alt-shift-q = 'move-node-to-workspace Q'
-# alt-shift-r = 'move-node-to-workspace R'
-# alt-shift-s = 'move-node-to-workspace S'
-# alt-shift-t = 'move-node-to-workspace T'
-# alt-shift-u = 'move-node-to-workspace U'
-# alt-shift-v = 'move-node-to-workspace V'
-# alt-shift-w = 'move-node-to-workspace W'
-# alt-shift-x = 'move-node-to-workspace X'
-# alt-shift-y = 'move-node-to-workspace Y'
-# alt-shift-z = 'move-node-to-workspace Z'
+alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
+alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
+alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
+alt-shift-a = ['move-node-to-workspace A', 'workspace A']
+alt-shift-b = ['move-node-to-workspace B', 'workspace B']
+alt-shift-c = ['move-node-to-workspace C', 'workspace C']
+alt-shift-d = ['move-node-to-workspace D', 'workspace D']
+alt-shift-e = ['move-node-to-workspace E', 'workspace E']
+# alt-shift-f = ['move-node-to-workspace F', 'workspace F']
+alt-shift-g = ['move-node-to-workspace G', 'workspace G']
+alt-shift-i = ['move-node-to-workspace I', 'workspace I']
+alt-shift-m = ['move-node-to-workspace M', 'workspace M']
+alt-shift-n = ['move-node-to-workspace N', 'workspace N']
+alt-shift-o = ['move-node-to-workspace O', 'workspace O']
+alt-shift-p = ['move-node-to-workspace P', 'workspace P']
+alt-shift-q = ['move-node-to-workspace Q', 'workspace Q']
+alt-shift-r = ['move-node-to-workspace R', 'workspace R']
+alt-shift-s = ['move-node-to-workspace S', 'workspace S']
+alt-shift-t = ['move-node-to-workspace T', 'workspace T']
+alt-shift-u = ['move-node-to-workspace U', 'workspace U']
+alt-shift-v = ['move-node-to-workspace V', 'workspace V']
+alt-shift-w = ['move-node-to-workspace W', 'workspace W']
+alt-shift-x = ['move-node-to-workspace X', 'workspace X']
+alt-shift-y = ['move-node-to-workspace Y', 'workspace Y']
+alt-shift-z = ['move-node-to-workspace Z', 'workspace Z']
 
 alt-shift-f = 'fullscreen'
 
@@ -207,6 +249,7 @@ alt-shift-semicolon = 'mode service'
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+s = ['exec-and-forget sketchybar --reload', 'mode main'] # reload sketchybar
 backspace = ['close-all-windows-but-current', 'mode main']
 
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
@@ -216,3 +259,43 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+[[on-window-detected]]
+if.app-id = 'org.alacritty'
+run = 'move-node-to-workspace T' # Terminal
+
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+run = 'move-node-to-workspace W' # Web browser
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.intellij'
+run = 'move-node-to-workspace I' # IDE
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace O' # Obsidian
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = 'move-node-to-workspace V' # VisualStudio
+
+[[on-window-detected]]
+if.app-id = 'com.sublimetext.4'
+run = 'move-node-to-workspace P' # Sublime
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'move-node-to-workspace R' # Finder
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace S' # Slack
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+run = 'move-node-to-workspace M' # Mail
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Preview'
+run = 'move-node-to-workspace D' # Documents
