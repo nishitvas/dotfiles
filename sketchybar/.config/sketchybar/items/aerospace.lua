@@ -3,7 +3,7 @@ local colors = require("colors")
 local settings = require("settings")
 local app_icons = require("helpers.app_icons")
 
-local max_workspaces = 9
+local max_workspaces = 16
 local query_workspaces = "aerospace list-workspaces --all --format '%{workspace}%{monitor-id}' --json"
 
 -- Add padding to the left
@@ -71,18 +71,16 @@ end
 
 sbar.exec(query_workspaces, function(workspaces_and_monitors)
     for _, entry in ipairs(workspaces_and_monitors) do
-        local space_index = tonumber(entry.workspace)
-        local monitor_id = math.floor(entry["monitor-id"])
+        local space_index = entry["workspace"]
+        local monitor_id = entry["monitor-id"]
         workspace_monitor[space_index] = monitor_id
-    end
-    for workspace_index = 1, max_workspaces do
         local workspace = sbar.add("item", {
             icon = {
                 color = colors.white,
                 highlight_color = colors.red,
                 drawing = false,
                 font = { family = settings.font.numbers },
-                string = workspace_index,
+                string = space_index,
                 padding_left = 10,
                 padding_right = 5,
             },
@@ -101,15 +99,15 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
                 height = 28,
                 border_color = colors.bg2,
             },
-            click_script = "aerospace workspace " .. workspace_index,
-            display = workspace_monitor[workspace_index],
+            click_script = "aerospace workspace " .. space_index,
+            --display = workspace_monitor[space_index],
         })
 
-        workspaces[workspace_index] = workspace
+        workspaces[space_index] = workspace
 
         workspace:subscribe("aerospace_workspace_change", function(env)
-            local focused_workspace = tonumber(env.FOCUSED_WORKSPACE)
-            local is_focused = focused_workspace == workspace_index
+            local focused_workspace = env.FOCUSED_WORKSPACE
+            local is_focused = focused_workspace == space_index
 
             sbar.animate("tanh", 10, function()
                 workspace:set({
@@ -123,13 +121,13 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
         end)
 
         workspace:subscribe("aerospace_focus_change", function()
-            updateWindows(workspace_index)
+            updateWindows(space_index)
         end)
 
         -- initial setup
-        updateWindows(workspace_index)
+        updateWindows(space_index)
         sbar.exec("aerospace list-workspaces --focused", function(focused_workspace)
-            workspaces[tonumber(focused_workspace)]:set({
+            workspaces[focused_workspace]:set({
                 icon = { highlight = true },
                 label = { highlight = true },
                 background = { border_width = 2 },
